@@ -1,15 +1,13 @@
-<div class="article-meta">
+<div class="article-meta" role="navigation">
   <a ui-sref="app.profile.main({ username:$ctrl.article.author.username })">
-    <img ng-src="{{$ctrl.article.author.image}}" />
+    <img ng-src="{{$ctrl.article.author.image}}" alt="Author" />
   </a>
 
-  <div class="info">
-    <a class="author"
-      ui-sref="app.profile.main({ username:$ctrl.article.author.username })"
+  <div class="info" role="group">
+    <a class="author" ui-sref="app.profile.main({ username:$ctrl.article.author.username })"
       ng-bind="$ctrl.article.author.username">
     </a>
-    <span class="date"
-      ng-bind="$ctrl.article.createdAt | date: 'longDate' ">
+    <span class="date" ng-bind="$ctrl.article.createdAt | date: 'longDate' " role="text">
     </span>
   </div>
 

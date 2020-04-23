@@ -1,12 +1,10 @@
 export default class Articles {
   constructor(AppConstants, $http, $q) {
-    'ngInject';
+    "ngInject";
 
     this._AppConstants = AppConstants;
     this._$http = $http;
     this._$q = $q;
-
-
   }
 
   /*
@@ -20,9 +18,12 @@ export default class Articles {
   query(config) {
     // Create the $http object for this request
     let request = {
-      url: this._AppConstants.api + '/articles' + ((config.type === 'feed') ? '/feed' : ''),
-      method: 'GET',
-      params: config.filters ? config.filters : null
+      url:
+        this._AppConstants.api +
+        "/articles" +
+        (config.type === "feed" ? "/feed" : ""),
+      method: "GET",
+      params: config.filters ? config.filters : null,
     };
     return this._$http(request).then((res) => res.data);
   }
@@ -36,8 +37,8 @@ export default class Articles {
     }
 
     this._$http({
-      url: this._AppConstants.api + '/articles/' + slug,
-      method: 'GET'
+      url: this._AppConstants.api + "/articles/" + slug,
+      method: "GET",
     }).then(
       (res) => deferred.resolve(res.data.article),
       (err) => deferred.reject(err)
@@ -48,9 +49,9 @@ export default class Articles {
 
   destroy(slug) {
     return this._$http({
-      url: this._AppConstants.api + '/articles/' + slug,
-      method: 'DELETE'
-    })
+      url: this._AppConstants.api + "/articles/" + slug,
+      method: "DELETE",
+    });
   }
 
   save(article) {
@@ -58,12 +59,11 @@ export default class Articles {
 
     if (article.slug) {
       request.url = `${this._AppConstants.api}/articles/${article.slug}`;
-      request.method = 'PUT';
+      request.method = "PUT";
       delete article.slug;
-
     } else {
       request.url = `${this._AppConstants.api}/articles`;
-      request.method = 'POST';
+      request.method = "POST";
     }
 
     request.data = { article: article };
@@ -71,20 +71,17 @@ export default class Articles {
     return this._$http(request).then((res) => res.data.article);
   }
 
-
   favorite(slug) {
     return this._$http({
-      url: this._AppConstants.api + '/articles/' + slug + '/favorite',
-      method: 'POST'
-    })
+      url: this._AppConstants.api + "/articles/" + slug + "/favorite",
+      method: "POST",
+    });
   }
 
   unfavorite(slug) {
     return this._$http({
-      url: this._AppConstants.api + '/articles/' + slug + '/favorite',
-      method: 'DELETE'
-    })
+      url: this._AppConstants.api + "/articles/" + slug + "/favorite",
+      method: "DELETE",
+    });
   }
-
-
 }

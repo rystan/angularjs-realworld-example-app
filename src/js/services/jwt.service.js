@@ -1,6 +1,6 @@
 export default class JWT {
   constructor(AppConstants, $window) {
-    'ngInject';
+    "ngInject";
 
     this._AppConstants = AppConstants;
     this._$window = $window;
@@ -17,5 +17,4 @@ export default class JWT {
   destroy() {
     this._$window.localStorage.removeItem(this._AppConstants.jwtKey);
   }
-
 }

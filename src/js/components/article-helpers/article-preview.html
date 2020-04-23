@@ -1,8 +1,6 @@
-<div class="article-preview">
+<div class="article-preview" role="main">
   <article-meta article="$ctrl.article">
-    <favorite-btn
-      article="$ctrl.article"
-      class="pull-xs-right">
+    <favorite-btn article="$ctrl.article" class="pull-xs-right">
       {{$ctrl.article.favoritesCount}}
     </favorite-btn>
   </article-meta>
@@ -12,8 +10,7 @@
     <p ng-bind="$ctrl.article.description"></p>
     <span>Read more...</span>
     <ul class="tag-list">
-      <li class="tag-default tag-pill tag-outline"
-        ng-repeat="tag in $ctrl.article.tagList">
+      <li class="tag-default tag-pill tag-outline" ng-repeat="tag in $ctrl.article.tagList">
         {{tag}}
       </li>
     </ul>

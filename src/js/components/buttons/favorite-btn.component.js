@@ -1,51 +1,46 @@
 class FavoriteBtnCtrl {
   constructor(User, Articles, $state) {
-    'ngInject';
+    "ngInject";
 
     this._User = User;
     this._Articles = Articles;
     this._$state = $state;
-
   }
 
   submit() {
     this.isSubmitting = true;
 
     if (!this._User.current) {
-      this._$state.go('app.register');
+      this._$state.go("app.register");
       return;
     }
 
+    // If fav'd already, unfavorite it
     if (this.article.favorited) {
-      this._Articles.unfavorite(this.article.slug).then(
-        () => {
-          this.isSubmitting = false;
-          this.article.favorited = false;
-          this.article.favoritesCount--;
-        }
-      )
+      this._Articles.unfavorite(this.article.slug).then(() => {
+        this.isSubmitting = false;
+        this.article.favorited = false;
+        this.article.favoritesCount--;
+      });
 
+      // Otherwise, favorite it
     } else {
-      this._Articles.favorite(this.article.slug).then(
-        () => {
-          this.isSubmitting = false;
-          this.article.favorited = true;
-          this.article.favoritesCount++;
-        }
-      )
+      this._Articles.favorite(this.article.slug).then(() => {
+        this.isSubmitting = false;
+        this.article.favorited = true;
+        this.article.favoritesCount++;
+      });
     }
-
   }
-
 }
 
-let FavoriteBtn= {
+let FavoriteBtn = {
   bindings: {
-    article: '='
+    article: "=",
   },
   transclude: true,
   controller: FavoriteBtnCtrl,
-  templateUrl: 'components/buttons/favorite-btn.html'
+  templateUrl: "components/buttons/favorite-btn.html",
 };
 
 export default FavoriteBtn;

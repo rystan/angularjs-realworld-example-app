@@ -1,12 +1,12 @@
-<div class="article-page">
+<div class="article-page" role="main">
 
   <!-- Banner for article title, action buttons -->
-  <div class="banner">
-    <div class="container">
+  <div class="banner" role="banner">
+    <div class="container" role="grid">
 
       <h1 ng-bind="::$ctrl.article.title"></h1>
 
-      <div class="article-meta">
+      <div class="article-meta" role="navigation">
         <!-- Show author info + favorite & follow buttons -->
         <article-actions article="$ctrl.article"></article-actions>
 
@@ -18,17 +18,16 @@
 
 
   <!-- Main view. Contains article html and comments -->
-  <div class="container page">
+  <div class="container page" role="grid">
 
     <!-- Article's HTML & tags rendered here -->
-    <div class="row article-content">
-      <div class="col-xs-12">
+    <div class="row article-content" role="group">
+      <div class="col-xs-12" role="columnheader">
 
-        <div ng-bind-html="::$ctrl.article.body"></div>
+        <div ng-bind-html="::$ctrl.article.body" role="textbox"></div>
 
         <ul class="tag-list">
-          <li class="tag-default tag-pill tag-outline"
-            ng-repeat="tag in ::$ctrl.article.tagList">
+          <li class="tag-default tag-pill tag-outline" ng-repeat="tag in ::$ctrl.article.tagList">
             {{ tag }}
           </li>
         </ul>
@@ -38,52 +37,41 @@
 
     <hr />
 
-    <div class="article-actions">
+    <div class="article-actions" role="group">
 
       <!-- Show author info + favorite & follow buttons -->
       <article-actions article="$ctrl.article"></article-actions>
-
     </div>
 
     <!-- Comments section -->
-    <div class="row">
-      <div class="col-xs-12 col-md-8 offset-md-2">
+    <div class="row" role="grid">
+      <div class="col-xs-12 col-md-8 offset-md-2" role="columnheader">
 
-        <div show-authed="true">
-          <list-errors from="$crl.commentForm.errors"></list-errors>
+        <div show-authed="true" role="form">
+          <list-errors from="$ctrl.commentForm.errors"></list-errors>
           <form class="card comment-form" ng-submit="$ctrl.addComment()">
             <fieldset ng-disabled="$ctrl.commentForm.isSubmitting">
-              <div class="card-block">
-                <textarea class="form-control"
-                  placeholder="Write a comment..."
-                  rows="3"
+              <div class="card-block" role="textbox">
+                <textarea class="form-control" placeholder="Write a comment..." rows="3"
                   ng-model="$ctrl.commentForm.body"></textarea>
               </div>
-              <div class="card-footer">
-                <img ng-src="{{::$ctrl.currentUser.image}}" class="comment-author-img" />
+              <div class="card-footer" role="button">
+                <img ng-src="{{::$ctrl.currentUser.image}}" class="comment-author-img" alt="Author" />
                 <button class="btn btn-sm btn-primary" type="submit">
-                 Post Comment
+                  Post Comment
                 </button>
               </div>
             </fieldset>
           </form>
         </div>
 
-        <div show-authed="false">
+        <div show-authed="false" role="link">
           <a ui-sref="app.login">Sign in</a> or <a ui-sref="app.register">sign up</a> to add comments on this article.
         </div>
 
-        <comment ng-repeat="cmt in $ctrl.comments"
-          data="cmt"
-          delete-cb="$ctrl.deleteComment(cmt.id, $index)">
+        <comment ng-repeat="cmt in $ctrl.comments" data="cmt" delete-cb="$ctrl.deleteComment(cmt.id, $index)">
         </comment>
-
-
       </div>
     </div>
-
   </div>
-
-
-
 </div>

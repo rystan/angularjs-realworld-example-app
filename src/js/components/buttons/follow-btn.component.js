@@ -1,10 +1,9 @@
 class FollowBtnCtrl {
   constructor(Profile, User, $state) {
-    'ngInject';
+    "ngInject";
 
     this._Profile = Profile;
     this._User = User;
-
     this._$state = $state;
   }
 
@@ -12,39 +11,33 @@ class FollowBtnCtrl {
     this.isSubmitting = true;
 
     if (!this._User.current) {
-      this._$state.go('app.register');
+      this._$state.go("app.register");
       return;
     }
 
     // If following already, unfollow
     if (this.user.following) {
-      this._Profile.unfollow(this.user.username).then(
-        () => {
-          this.isSubmitting = false;
-          this.user.following = false;
-        }
-      )
+      this._Profile.unfollow(this.user.username).then(() => {
+        this.isSubmitting = false;
+        this.user.following = false;
+      });
 
-    // Otherwise, follow them
+      // Otherwise, follow them
     } else {
-      this._Profile.follow(this.user.username).then(
-        () => {
-          this.isSubmitting = false;
-          this.user.following = true;
-        }
-      )
+      this._Profile.follow(this.user.username).then(() => {
+        this.isSubmitting = false;
+        this.user.following = true;
+      });
     }
-
-
   }
 }
 
-let FollowBtn= {
+let FollowBtn = {
   bindings: {
-    user: '='
+    user: "=",
   },
   controller: FollowBtnCtrl,
-  templateUrl: 'components/buttons/follow-btn.html'
+  templateUrl: "components/buttons/follow-btn.html",
 };
 
 export default FollowBtn;

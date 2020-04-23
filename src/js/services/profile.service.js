@@ -1,31 +1,31 @@
 export default class Profile {
-  constructor (AppConstants, $http) {
-    'ngInject';
+  constructor(AppConstants, $http) {
+    "ngInject";
 
     this._AppConstants = AppConstants;
     this._$http = $http;
-
   }
 
   get(username) {
     return this._$http({
-      url: this._AppConstants.api + '/profiles/' + username,
-      method: 'GET'
+      url: this._AppConstants.api + "/profiles/" + username,
+      method: "GET",
     }).then((res) => res.data.profile);
   }
 
+  // Follow a user
   follow(username) {
     return this._$http({
-      url: this._AppConstants.api + '/profiles/' + username + '/follow',
-      method: 'POST'
+      url: this._AppConstants.api + "/profiles" + username + "/follow",
+      method: "POST",
     }).then((res) => res.data);
   }
 
+  // Unfollow a user
   unfollow(username) {
     return this._$http({
-      url: this._AppConstants.api + '/profiles/' + username + '/follow',
-      method: 'DELETE'
+      url: this._AppConstants.api + "/profiles/" + username + "/follow",
+      method: "DELETE",
     }).then((res) => res.data);
   }
-
 }

@@ -1,8 +1,8 @@
 let ListErrors = {
   bindings: {
-    errors: '='
+    errors: "=",
   },
-  templateUrl: 'components/list-errors.html'
-}
+  templateUrl: "components/list-errors.html",
+};
 
 export default ListErrors;

@@ -1,35 +1,32 @@
 class ListPaginationCtrl {
   constructor($scope) {
-    'ngInject';
+    "ngInject";
 
     this._$scope = $scope;
-
   }
 
   pageRange(total) {
     let pages = [];
 
-    for (var i = 0; i < total; i++) {
-      pages.push(i + 1)
+    for (let i = 0; i < total; i++) {
+      pages.push(i + 1);
     }
 
     return pages;
   }
 
   changePage(number) {
-    this._$scope.$emit('setPageTo', number);
+    this._$scope.$emit("setPageTo", number);
   }
-
-
 }
 
-let ListPagination= {
+let ListPagination = {
   bindings: {
-    totalPages: '=',
-    currentPage: '='
+    totalPages: "=",
+    currentPage: "=",
   },
   controller: ListPaginationCtrl,
-  templateUrl: 'components/article-helpers/list-pagination.html'
+  templateUrl: "components/article-helpers/list-pagination.html",
 };
 
 export default ListPagination;

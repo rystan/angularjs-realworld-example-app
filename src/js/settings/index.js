@@ -1,15 +1,14 @@
-import angular from 'angular';
+import angular from "angular";
 
-let settingsModule = angular.module('app.settings', []);
+// Create the settings module where our functionality can attach to
+let settingsModule = angular.module("app.settings", []);
 
-// Config
-import SettingsConfig from './settings.config'
+// Include our UI-Router config settings
+import SettingsConfig from "./settings.config";
 settingsModule.config(SettingsConfig);
 
-
 // Controllers
-import SettingsCtrl from './settings.controller';
-settingsModule.controller('SettingsCtrl', SettingsCtrl);
-
+import SettingsCtrl from "./settings.controller";
+settingsModule.controller("SettingsCtrl", SettingsCtrl);
 
 export default settingsModule;

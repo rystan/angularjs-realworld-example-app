@@ -1,26 +1,25 @@
- <div class="home-page">
+<div class="home-page" role="main">
 
   <!-- Splash banner that only shows when not logged in -->
-  <div class="banner" show-authed="false">
-    <div class="container">
+  <div class="banner" show-authed="false" role="banner">
+    <div class="container" role="navigation">
       <h1 class="logo-font" ng-bind="::$ctrl.appName | lowercase"></h1>
       <p>A place to share your knowledge.</p>
     </div>
   </div>
 
-  <div class="container page">
-    <div class="row">
+  <div class="container page" role="grid">
+    <div class="row" role="row">
 
 
       <!-- Main view - contains tabs & article list -->
-      <div class="col-md-9">
+      <div class="col-md-9" role="columnheader">
         <!-- Tabs for toggling between feed, article lists -->
-        <div class="feed-toggle">
+        <div class="feed-toggle" role="tablist">
           <ul class="nav nav-pills outline-active">
 
             <li class="nav-item" show-authed="true">
-              <a href="" class="nav-link"
-                ng-class="{ active: $ctrl.listConfig.type === 'feed' }"
+              <a href="" class="nav-link" ng-class="{ active: $ctrl.listConfig.type === 'feed' }"
                 ng-click="$ctrl.changeList({ type: 'feed' })">
                 Your Feed
               </a>
@@ -36,7 +35,7 @@
 
             <li class="nav-item" ng-show="$ctrl.listConfig.filters.tag">
               <a href="" class="nav-link active">
-                <i class="ion-pound"></i> {{$ctrl.listConfig.filters.tag}}
+                <i class="ion-pound" aria-hidden="true"></i> {{$ctrl.listConfig.filters.tag}}
               </a>
             </li>
 
@@ -45,32 +44,28 @@
 
         <!-- List the current articles -->
         <article-list limit="10" list-config="$ctrl.listConfig"></article-list>
-
       </div>
 
       <!-- Sidebar where popular tags are listed -->
-      <div class="col-md-3">
-        <div class="sidebar">
+      <div class="col-md-3" role="columnheader">
+        <div class="sidebar" role="table">
 
           <p>Popular Tags</p>
 
-          <div class="tag-list" ng-show="$ctrl.tags">
+          <div class="tag-list" ng-show="$ctrl.tags" role="list">
             <a href="" class="tag-default tag-pill"
-              ng-click="$ctrl.changeList({ type: 'all', filters: { tag: tagName } })"
-              ng-repeat="tagName in $ctrl.tags"
+              ng-click="$ctrl.changeList({ type: 'all', filters: { tag: tagName } })" ng-repeat="tagName in $ctrl.tags"
               ng-bind="tagName">
             </a>
           </div>
 
-          <div ng-show="!$ctrl.tagsLoaded">
+          <div ng-show="!$ctrl.tagsLoaded" role="log">
             Loading tags...
           </div>
 
-          <div class="post-preview"
-            ng-show="$ctrl.tagsLoaded && !$ctrl.tags.length">
+          <div class="post-preview" ng-show="$ctrl.tagsLoaded && !$ctrl.tags.length" role="log">
             No tags are here... yet.
           </div>
-
         </div>
       </div>
 

@@ -1,8 +1,8 @@
 let ArticlePreview = {
   bindings: {
-    article: '='
+    article: "=",
   },
-  templateUrl: 'components/article-helpers/article-preview.html'
+  templateUrl: "components/article-helpers/article-preview.html",
 };
 
 export default ArticlePreview;
